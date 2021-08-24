@@ -27,7 +27,7 @@ jobs:
       run: docker image list
     
     - name: Execute Clair scan
-      uses: the-iron-bank-of-braavos/clair@fix/local-and-remote
+      uses: the-iron-bank-of-braavos/clair@a83906924cd0f4cbc8285d5f500fde1e61b42752
       with:
         updater: debian
         report_path: clair-report.json
@@ -41,7 +41,7 @@ jobs:
         path: clair-report.json
         
     - name: Publish Scan Report
-      uses: benauca/publish-clair-report@main
+      uses: benauca/publish-clair-report@10b0daa67fca82001af3c637adde6d2557356d7f
       with:
         report_paths: 'clair-report.json'
         severity_level: 'Unknown'
