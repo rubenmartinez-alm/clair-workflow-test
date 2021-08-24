@@ -30,12 +30,12 @@ jobs:
       uses: the-iron-bank-of-braavos/clair@fix/local-and-remote
       with:
         updater: debian
-        report_path: clair-report.xml
-        report_format: 'xml'
+        report_path: clair-report.json
+        report_format: 'json'
         image: ${{env.DOCKER_TAG}}
 
     - name: Store the report
       uses: actions/upload-artifact@v2
       with:
         name: clair-result
-        path: clair-report.xml
+        path: clair-report.json
