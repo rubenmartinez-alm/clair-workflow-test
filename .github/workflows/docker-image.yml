@@ -1,0 +1,30 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+  
+    env:
+      DOCKER_TAG: theironbank:latest
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag ${DOCKER_TAG}
+    - name: Execute Clair scan
+      uses: the-iron-bank-of-braavos/clair@main
+        with:
+          updater: ubuntu
+          report_path: report.json
+          report_format: json
+          image: ${{env.DOCKER_TAG}}
+          
