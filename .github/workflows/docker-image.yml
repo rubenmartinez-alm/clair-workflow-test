@@ -12,23 +12,30 @@ jobs:
   
     env:
       DOCKER_TAG: theironbank:latest
+      CLAIR_REPORT: clair-report.jsom
 
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+    
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag ${DOCKER_TAG}
-    - name: Docker Login
-      run: docker login -u ${{secrets.DOCKER_USR}} -p ${{secrets.DOCKER_TKN}}
+    
     - name: Docker images
       run: docker image list
+    
     - name: Execute Clair scan
       uses: the-iron-bank-of-braavos/clair@fix/local-and-remote
       with:
         updater: ubuntu
-        report_path: report.json
+        report_path: ${{env.CLAIR_REPORT}}
         report_format: json
         image: ${{env.DOCKER_TAG}}
-          
+
+    - name: Store the report
+      uses: actions/upload-artifact@v2
+      with:
+        name: clair-result
+        path: ${{env.CLAIR_REPORT}}
