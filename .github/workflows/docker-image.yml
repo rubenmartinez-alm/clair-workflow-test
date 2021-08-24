@@ -22,6 +22,8 @@ jobs:
       run: docker build . --file Dockerfile --tag ${DOCKER_TAG}
     - name: Docker Login
       run: docker login -u ${{secrets.DOCKER_USR}} -p ${{secrets.DOCKER_TKN}}
+    - name: Docker images
+      run: docker image list
     - name: Execute Clair scan
       uses: the-iron-bank-of-braavos/clair@main
       with:
