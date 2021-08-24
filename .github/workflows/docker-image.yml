@@ -30,12 +30,15 @@ jobs:
       uses: the-iron-bank-of-braavos/clair@fix/local-and-remote
       with:
         updater: ubuntu
-        report_path: clair-report.json
+        report_path: ${GITHUB_WORKSPACE}/clair-report.json
         report_format: json
         image: ${{env.DOCKER_TAG}}
 
+    - name: List report
+      run: ls -la ${GITHUB_WORKSPACE}
+      
     - name: Store the report
       uses: actions/upload-artifact@v2
       with:
         name: clair-result
-        path: clair-report.json
+        path: ${GITHUB_WORKSPACE}/clair-report.json
