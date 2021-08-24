@@ -29,7 +29,7 @@ jobs:
     - name: Execute Clair scan
       uses: the-iron-bank-of-braavos/clair@fix/local-and-remote
       with:
-        updater: ubuntu
+        updater: debian
         report_path: clair-report.xml
         report_format: 'xml'
         image: ${{env.DOCKER_TAG}}
