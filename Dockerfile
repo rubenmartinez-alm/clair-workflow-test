@@ -1,1 +1,1 @@
-FROM vulnerables/web-dvwa
+FROM ubuntu:14:04
