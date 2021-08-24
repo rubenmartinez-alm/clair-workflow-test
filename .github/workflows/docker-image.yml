@@ -8,7 +8,8 @@ on:
 
 jobs:
 
-  build:
+  clair-scan:
+    name: Clair Scan
   
     env:
       DOCKER_TAG: theironbank:latest
