@@ -1,1 +1,1 @@
-FROM ubuntu:14.04
+FROM ulnerables/web-dvwa
