@@ -30,7 +30,7 @@ jobs:
     - name: Execute Clair scan
       uses: the-iron-bank-of-braavos/clair@6d7007c8ce8fb5ac502c1d16c76d14a8d9141e04
       with:
-        updater: ubuntu
+        updater: debian
         report_path: clair-report.json
         report_format: 'json'
         image: ${{env.DOCKER_TAG}}
