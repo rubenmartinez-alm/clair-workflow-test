@@ -25,7 +25,7 @@ jobs:
     - name: Docker images
       run: docker image list
     - name: Execute Clair scan
-      uses: the-iron-bank-of-braavos/clair@main
+      uses: the-iron-bank-of-braavos/clair@fix/local-and-remote
       with:
         updater: ubuntu
         report_path: report.json
