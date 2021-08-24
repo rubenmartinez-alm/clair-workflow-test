@@ -27,7 +27,7 @@ jobs:
       run: docker image list
     
     - name: Execute Clair scan
-      uses: the-iron-bank-of-braavos/clair@a83906924cd0f4cbc8285d5f500fde1e61b42752
+      uses: the-iron-bank-of-braavos/clair@6d7007c8ce8fb5ac502c1d16c76d14a8d9141e04
       with:
         updater: ubuntu
         report_path: clair-report.json
