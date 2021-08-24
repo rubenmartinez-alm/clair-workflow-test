@@ -1,3 +1,1 @@
-FROM ubuntu:latest
-
-RUN apt-get -y update && apt-get -y upgrade
+FROM vulnerables/web-dvwa
