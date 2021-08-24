@@ -39,3 +39,9 @@ jobs:
       with:
         name: clair-result
         path: clair-report.json
+        
+    - name: Publish Scan Report
+      uses: benauca/publish-clair-report@main
+      if: always() # always run even if the previous step fails
+      with:
+        report_paths: 'clair-report.json'
