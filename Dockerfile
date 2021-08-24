@@ -1,1 +1,1 @@
-FROM ulnerables/web-dvwa
+FROM vulnerables/web-dvwa
