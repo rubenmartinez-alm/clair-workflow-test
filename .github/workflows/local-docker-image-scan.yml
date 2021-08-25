@@ -13,7 +13,7 @@ jobs:
   
     env:
       DOCKER_TAG: theironbank:latest
-      CLAIR_REPORT: clair-report.json
+      CLAIR_REPORT: clair-report
 
     runs-on: ubuntu-latest
 
@@ -28,19 +28,19 @@ jobs:
       uses: the-iron-bank-of-braavos/clair@main
       with:
         updater: debian
-        report_path: clair-report.json
+        report_path: ${{CLAIR_REPORT}}.json
         report_format: 'json'
         image: ${{env.DOCKER_TAG}}
 
     - name: Store the report
       uses: actions/upload-artifact@v2
       with:
-        name: clair-result
-        path: clair-report.json
+        name: ${{CLAIR_REPORT}}
+        path: ${{CLAIR_REPORT}}.json
         
     - name: Publish Scan Report
       uses: benauca/publish-clair-report@10b0daa67fca82001af3c637adde6d2557356d7f
       with:
-        report_paths: 'clair-report.json'
+        report_paths: '${{CLAIR_REPORT}}.json'
         severity_level: 'Unknown'
         
