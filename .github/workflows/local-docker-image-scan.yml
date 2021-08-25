@@ -28,19 +28,19 @@ jobs:
       uses: the-iron-bank-of-braavos/clair@main
       with:
         updater: debian
-        report_path: ${{CLAIR_REPORT}}.json
+        report_path: ${{env.CLAIR_REPORT}}.json
         report_format: 'json'
         image: ${{env.DOCKER_TAG}}
 
     - name: Store the report
       uses: actions/upload-artifact@v2
       with:
-        name: ${{CLAIR_REPORT}}
-        path: ${{CLAIR_REPORT}}.json
+        name: ${{env.CLAIR_REPORT}}
+        path: ${{envCLAIR_REPORT}}.json
         
     - name: Publish Scan Report
       uses: benauca/publish-clair-report@10b0daa67fca82001af3c637adde6d2557356d7f
       with:
-        report_paths: '${{CLAIR_REPORT}}.json'
+        report_paths: '${{env.CLAIR_REPORT}}.json'
         severity_level: 'Unknown'
         
