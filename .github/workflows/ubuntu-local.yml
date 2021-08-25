@@ -13,6 +13,7 @@ jobs:
   
     env:
       DOCKER_TAG: "ubuntu:14.04"
+      CLAIR_UPDATER: "ubuntu"
       CLAIR_REPORT: clair-report
 
     runs-on: ubuntu-latest
@@ -27,7 +28,7 @@ jobs:
     - name: Execute Clair scan
       uses: the-iron-bank-of-braavos/clair@main
       with:
-        updater: debian
+        updater: ${{env.CLAIR_UPDATER}}
         report_path: ${{env.CLAIR_REPORT}}.json
         report_format: 'json'
         image: ${{env.DOCKER_TAG}}
