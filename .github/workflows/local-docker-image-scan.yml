@@ -36,7 +36,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: ${{env.CLAIR_REPORT}}
-        path: ${{envCLAIR_REPORT}}.json
+        path: ${{env.CLAIR_REPORT}}.json
         
     - name: Publish Scan Report
       uses: benauca/publish-clair-report@10b0daa67fca82001af3c637adde6d2557356d7f
