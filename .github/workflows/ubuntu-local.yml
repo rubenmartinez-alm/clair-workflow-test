@@ -1,0 +1,46 @@
+name: Local Ubuntu docker image scan
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  clair-scan:
+    name: Clair Scan
+  
+    env:
+      DOCKER_TAG: "ubuntu:14.04"
+      CLAIR_REPORT: clair-report
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag ${DOCKER_TAG}
+
+    - name: Execute Clair scan
+      uses: the-iron-bank-of-braavos/clair@main
+      with:
+        updater: debian
+        report_path: ${{env.CLAIR_REPORT}}.json
+        report_format: 'json'
+        image: ${{env.DOCKER_TAG}}
+
+    - name: Store the report
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{env.CLAIR_REPORT}}
+        path: ${{env.CLAIR_REPORT}}.json
+        
+    - name: Publish Scan Report
+      uses: benauca/publish-clair-report@main
+      with:
+        report_paths: '${{env.CLAIR_REPORT}}.json'
+        severity_level: 'Unknown'
+        
