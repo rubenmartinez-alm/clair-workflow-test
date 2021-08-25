@@ -25,7 +25,7 @@ jobs:
       run: docker build . --file Dockerfile --tag ${DOCKER_TAG}
 
     - name: Execute Clair scan
-      uses: the-iron-bank-of-braavos/clair@a83906924cd0f4cbc8285d5f500fde1e61b42752
+      uses: the-iron-bank-of-braavos/clair@main
       with:
         updater: debian
         report_path: clair-report.json
