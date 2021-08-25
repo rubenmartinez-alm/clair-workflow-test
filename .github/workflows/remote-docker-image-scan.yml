@@ -1,0 +1,43 @@
+name: Remote docker image scan
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  clair-scan:
+    name: Clair Scan
+  
+    env:
+      DOCKER_TAG: theironbank:latest
+      CLAIR_REPORT: remote-clair-report
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Docker login
+      run: docker login -u ${{secrets.DOCKER_USR}} -p ${{secrets.DOCKER_TKN}}
+    - name: Execute Clair scan
+      uses: the-iron-bank-of-braavos/clair@a83906924cd0f4cbc8285d5f500fde1e61b42752
+      with:
+        updater: debian
+        report_path: ${env.CLAIR_REPORT}.json
+        report_format: 'json'
+        image: ${{env.DOCKER_TAG}}
+
+    - name: Store the report
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${env.CLAIR_REPORT}
+        path: ${env.CLAIR_REPORT}.json
+        
+    - name: Publish Scan Report
+      uses: benauca/publish-clair-report@10b0daa67fca82001af3c637adde6d2557356d7f
+      with:
+        report_paths: ${env.CLAIR_REPORT}.json
+        severity_level: 'Unknown'
+        
