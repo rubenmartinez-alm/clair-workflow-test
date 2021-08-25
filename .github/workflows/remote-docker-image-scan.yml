@@ -25,6 +25,7 @@ jobs:
     - name: Execute Clair scan
       uses: the-iron-bank-of-braavos/clair@main
       with:
+        local: "no"
         updater: debian
         report_path: ${{env.CLAIR_REPORT}}.json
         report_format: 'json'
