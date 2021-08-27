@@ -25,7 +25,7 @@ jobs:
       run: docker build . --file Dockerfile --tag ${DOCKER_TAG}
 
     - name: Execute Clair scan
-      uses: santander-group/clair-scan-action@1.0.0
+      uses: santander-group/clair-scan-action@fix/script-typo
       with:
         updater: debian
         report_path: ${{env.CLAIR_REPORT}}.json
