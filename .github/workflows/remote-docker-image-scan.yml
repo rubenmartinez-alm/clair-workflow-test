@@ -23,7 +23,7 @@ jobs:
       run: docker login -u ${{secrets.DOCKER_USR}} -p ${{secrets.DOCKER_TKN}}
       
     - name: Execute Clair scan
-      uses: the-iron-bank-of-braavos/clair@main
+      uses: santander-group/clair-scan-action@fix/script-typo
       with:
         local: "no"
         updater: debian
