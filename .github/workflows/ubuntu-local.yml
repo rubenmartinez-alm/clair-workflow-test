@@ -26,7 +26,7 @@ jobs:
       run: docker build . --file Dockerfile --tag ${DOCKER_TAG}
 
     - name: Execute Clair scan
-      uses: the-iron-bank-of-braavos/clair@main
+      uses: santander-group/clair-scan-action@hotfix/ivanamat-patch-1
       with:
         updater: ${{env.CLAIR_UPDATER}}
         report_path: ${{env.CLAIR_REPORT}}.json
