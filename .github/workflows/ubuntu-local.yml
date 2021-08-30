@@ -40,7 +40,7 @@ jobs:
         path: ${{env.CLAIR_REPORT}}.json
         
     - name: Publish Scan Report
-      uses: benauca/publish-clair-report@main
+      uses: benauca/publish-clair-report@10b0daa67fca82001af3c637adde6d2557356d7f
       with:
         report_paths: '${{env.CLAIR_REPORT}}.json'
         severity_level: 'Unknown'
