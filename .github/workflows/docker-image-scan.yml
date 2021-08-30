@@ -120,7 +120,7 @@ jobs:
         check_name: Report -> '${{env.CLAIR_REPORT}}'
         
   local-clair-scan-rhel:
-    name: Clair Scan for rhel
+    name: Local Clair Scan for rhel
     needs: local-clair-scan-ubuntu
     env:
       DOCKER_TAG: theironbank:rhel-latest
