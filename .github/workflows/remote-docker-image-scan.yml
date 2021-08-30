@@ -117,15 +117,13 @@ jobs:
     name: Clair Scan for centos
     needs: clair-scan-ubuntu
     env:
-      DOCKER_TAG: centos:7
+      DOCKER_TAG: registry.access.redhat.com/ubi8/openjdk-11:latest
       CLAIR_REPORT: remote-ubuntu-clair-report
 
     runs-on: ubuntu-latest
 
     steps:
-    - name: Docker login
-      run: docker login -u ${{secrets.DOCKER_USR}} -p ${{secrets.DOCKER_TKN}}
-      
+
     - name: Execute Clair scan
       uses: santander-group/clair-scan-action@main
       with:
@@ -145,5 +143,5 @@ jobs:
       uses: benauca/publish-clair-report@10b0daa67fca82001af3c637adde6d2557356d7f
       with:
         report_paths: ${{env.CLAIR_REPORT}}.json
-        severity_level: 'Unknown'
+        severity_level: 'High'
         check_name: '${{env.CLAIR_REPORT}}'
