@@ -43,7 +43,7 @@ jobs:
       with:
         report_paths: '${{env.CLAIR_REPORT}}.json'
         severity_level: 'Unknown'
-        check_name: '${{env.CLAIR_REPORT}}'
+        check_name: Report -> '${{env.CLAIR_REPORT}}'
         
   local-clair-scan-alpine:
     name: Local Clair Scan for Alpine
@@ -80,7 +80,7 @@ jobs:
       with:
         report_paths: '${{env.CLAIR_REPORT}}.json'
         severity_level: 'Unknown'
-        check_name: '${{env.CLAIR_REPORT}}'
+        check_name: Report -> '${{env.CLAIR_REPORT}}'
 
   local-clair-scan-ubuntu:
     name: Local Clair Scan for Ubuntu
@@ -117,7 +117,7 @@ jobs:
       with:
         report_paths: '${{env.CLAIR_REPORT}}.json'
         severity_level: 'Unknown'
-        check_name: '${{env.CLAIR_REPORT}}'
+        check_name: Report -> '${{env.CLAIR_REPORT}}'
         
   local-clair-scan-centos:
     name: Clair Scan for Centos
@@ -154,9 +154,9 @@ jobs:
       with:
         report_paths: '${{env.CLAIR_REPORT}}.json'
         severity_level: 'Unknown'
-        check_name: '${{env.CLAIR_REPORT}}'
+        check_name: Report -> '${{env.CLAIR_REPORT}}'
 
-  clair-scan-debian:
+  remote-clair-scan-debian:
     name: Clair Scan for Debian
   
     env:
@@ -189,11 +189,11 @@ jobs:
       with:
         report_paths: ${{env.CLAIR_REPORT}}.json
         severity_level: 'Unknown'
-        check_name: '${{env.CLAIR_REPORT}}'
+        check_name: Report -> '${{env.CLAIR_REPORT}}'
         
-  clair-scan-alpine:
+  remote-clair-scan-alpine:
     name: Clair Scan for Alpine
-    needs: clair-scan-debian
+    needs: remote-clair-scan-debian
     env:
       DOCKER_TAG: alpine:3.14
       CLAIR_REPORT: remote-alpine-clair-report
@@ -224,11 +224,11 @@ jobs:
       with:
         report_paths: ${{env.CLAIR_REPORT}}.json
         severity_level: 'Unknown'
-        check_name: '${{env.CLAIR_REPORT}}'
+        check_name: Report -> '${{env.CLAIR_REPORT}}'
 
-  clair-scan-ubuntu:
+  remote-clair-scan-ubuntu:
     name: Clair Scan for Ubuntu
-    needs: clair-scan-alpine
+    needs: remote-clair-scan-alpine
     env:
       DOCKER_TAG: ubuntu:14.04
       CLAIR_REPORT: remote-ubuntu-clair-report
@@ -259,11 +259,11 @@ jobs:
       with:
         report_paths: ${{env.CLAIR_REPORT}}.json
         severity_level: 'Unknown'
-        check_name: '${{env.CLAIR_REPORT}}'
+        check_name: Report -> '${{env.CLAIR_REPORT}}'
 
-  clair-scan-centos:
+  remote-clair-scan-centos:
     name: Clair Scan for centos
-    needs: clair-scan-ubuntu
+    needs: remote-clair-scan-ubuntu
     env:
       DOCKER_TAG: registry.access.redhat.com/ubi8/openjdk-11:latest
       CLAIR_REPORT: remote-ubuntu-clair-report
@@ -292,4 +292,4 @@ jobs:
       with:
         report_paths: ${{env.CLAIR_REPORT}}.json
         severity_level: 'High'
-        check_name: '${{env.CLAIR_REPORT}}'
+        check_name: Report -> '${{env.CLAIR_REPORT}}'
