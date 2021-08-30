@@ -42,4 +42,5 @@ jobs:
       with:
         report_paths: ${{env.CLAIR_REPORT}}.json
         severity_level: 'Unknown'
+        check_name: 'remote-report'
         
