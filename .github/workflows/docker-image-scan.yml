@@ -116,7 +116,7 @@ jobs:
       uses: benauca/publish-clair-report@10b0daa67fca82001af3c637adde6d2557356d7f
       with:
         report_paths: '${{env.CLAIR_REPORT}}.json'
-        severity_level: 'Unknown'
+        severity_level: 'Critical'
         check_name: Report -> '${{env.CLAIR_REPORT}}'
         
   local-clair-scan-centos:
@@ -153,7 +153,7 @@ jobs:
       uses: benauca/publish-clair-report@10b0daa67fca82001af3c637adde6d2557356d7f
       with:
         report_paths: '${{env.CLAIR_REPORT}}.json'
-        severity_level: 'Unknown'
+        severity_level: 'Critical'
         check_name: Report -> '${{env.CLAIR_REPORT}}'
 
   remote-clair-scan-debian:
@@ -258,7 +258,7 @@ jobs:
       uses: benauca/publish-clair-report@10b0daa67fca82001af3c637adde6d2557356d7f
       with:
         report_paths: ${{env.CLAIR_REPORT}}.json
-        severity_level: 'Unknown'
+        severity_level: 'Critical'
         check_name: Report -> '${{env.CLAIR_REPORT}}'
 
   remote-clair-scan-centos:
@@ -291,5 +291,5 @@ jobs:
       uses: benauca/publish-clair-report@10b0daa67fca82001af3c637adde6d2557356d7f
       with:
         report_paths: ${{env.CLAIR_REPORT}}.json
-        severity_level: 'High'
+        severity_level: 'Critical'
         check_name: Report -> '${{env.CLAIR_REPORT}}'
