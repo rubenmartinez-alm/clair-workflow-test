@@ -157,7 +157,7 @@ jobs:
         check_name: Report -> '${{env.CLAIR_REPORT}}'
 
   remote-clair-scan-debian:
-    name: Clair Scan for Debian
+    name: Remote Clair Scan for Debian
   
     env:
       DOCKER_TAG: vulnerables/web-dvwa
@@ -192,7 +192,7 @@ jobs:
         check_name: Report -> '${{env.CLAIR_REPORT}}'
         
   remote-clair-scan-alpine:
-    name: Clair Scan for Alpine
+    name: Remote Clair Scan for Alpine
     needs: remote-clair-scan-debian
     env:
       DOCKER_TAG: alpine:3.14
@@ -227,7 +227,7 @@ jobs:
         check_name: Report -> '${{env.CLAIR_REPORT}}'
 
   remote-clair-scan-ubuntu:
-    name: Clair Scan for Ubuntu
+    name: Remote Clair Scan for Ubuntu
     needs: remote-clair-scan-alpine
     env:
       DOCKER_TAG: ubuntu:14.04
@@ -262,7 +262,7 @@ jobs:
         check_name: Report -> '${{env.CLAIR_REPORT}}'
 
   remote-clair-scan-centos:
-    name: Clair Scan for centos
+    name: Remote Clair Scan for centos
     needs: remote-clair-scan-ubuntu
     env:
       DOCKER_TAG: registry.access.redhat.com/ubi8/openjdk-11:latest
