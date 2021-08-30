@@ -8,17 +8,16 @@ on:
 
 jobs:
 
-  clair-scan:
-    name: Clair Scan
+  clair-scan-debian:
+    name: Clair Scan for Debian
   
     env:
       DOCKER_TAG: vulnerables/web-dvwa
-      CLAIR_REPORT: remote-clair-report
+      CLAIR_REPORT: debian-remote-clair-report
 
     runs-on: ubuntu-latest
 
     steps:
-
     - name: Docker login
       run: docker login -u ${{secrets.DOCKER_USR}} -p ${{secrets.DOCKER_TKN}}
       
@@ -42,5 +41,74 @@ jobs:
       with:
         report_paths: ${{env.CLAIR_REPORT}}.json
         severity_level: 'Unknown'
-        check_name: 'remote-report'
+        check_name: '${{CLAIR_REPORT}}'
         
+  clair-scan-alpine:
+    name: Clair Scan for Alpine
+  
+    env:
+      DOCKER_TAG: vulnerables/web-dvwa
+      CLAIR_REPORT: alpine-remote-clair-report
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Docker login
+      run: docker login -u ${{secrets.DOCKER_USR}} -p ${{secrets.DOCKER_TKN}}
+      
+    - name: Execute Clair scan
+      uses: santander-group/clair-scan-action@main
+      with:
+        local: "no"
+        updater: alpine
+        report_path: ${{env.CLAIR_REPORT}}.json
+        report_format: 'json'
+        image: ${{env.DOCKER_TAG}}
+
+    - name: Store the report
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{env.CLAIR_REPORT}}
+        path: ${{env.CLAIR_REPORT}}.json
+        
+    - name: Publish Scan Report
+      uses: benauca/publish-clair-report@10b0daa67fca82001af3c637adde6d2557356d7f
+      with:
+        report_paths: ${{env.CLAIR_REPORT}}.json
+        severity_level: 'Unknown'
+        check_name: '${{CLAIR_REPORT}}'
+
+  clair-scan-ubuntu:
+    name: Clair Scan for Ubuntu
+  
+    env:
+      DOCKER_TAG: vulnerables/web-dvwa
+      CLAIR_REPORT: ubuntu-remote-clair-report
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Docker login
+      run: docker login -u ${{secrets.DOCKER_USR}} -p ${{secrets.DOCKER_TKN}}
+      
+    - name: Execute Clair scan
+      uses: santander-group/clair-scan-action@main
+      with:
+        local: "no"
+        updater: ubuntu
+        report_path: ${{env.CLAIR_REPORT}}.json
+        report_format: 'json'
+        image: ${{env.DOCKER_TAG}}
+
+    - name: Store the report
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{env.CLAIR_REPORT}}
+        path: ${{env.CLAIR_REPORT}}.json
+        
+    - name: Publish Scan Report
+      uses: benauca/publish-clair-report@10b0daa67fca82001af3c637adde6d2557356d7f
+      with:
+        report_paths: ${{env.CLAIR_REPORT}}.json
+        severity_level: 'Unknown'
+        check_name: '${{CLAIR_REPORT}}'

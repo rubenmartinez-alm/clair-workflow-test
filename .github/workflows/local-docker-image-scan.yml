@@ -8,12 +8,12 @@ on:
 
 jobs:
 
-  clair-scan:
-    name: Clair Scan
+  clair-scan-debian:
+    name: Clair Scan for Debian
   
     env:
-      DOCKER_TAG: theironbank:latest
-      CLAIR_REPORT: clair-report
+      DOCKER_TAG: theironbank:debian-latest
+      CLAIR_REPORT: debian-clair-report
 
     runs-on: ubuntu-latest
 
@@ -22,7 +22,7 @@ jobs:
       uses: actions/checkout@v2
     
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ${DOCKER_TAG}
+      run: docker build . --file debian/Dockerfile --tag ${DOCKER_TAG}
 
     - name: Execute Clair scan
       uses: santander-group/clair-scan-action@main
@@ -43,5 +43,79 @@ jobs:
       with:
         report_paths: '${{env.CLAIR_REPORT}}.json'
         severity_level: 'Unknown'
-        check_name: 'local-report'
+        check_name: '${{env.CLAIR_REPORT}}'
+        
+  clair-scan-alpine:
+    name: Clair Scan for Alpine
+  
+    env:
+      DOCKER_TAG: theironbank:alpine-latest
+      CLAIR_REPORT: alpine-clair-report
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    
+    - name: Build the Docker image
+      run: docker build . --file alpine/Dockerfile --tag ${DOCKER_TAG}
+
+    - name: Execute Clair scan
+      uses: santander-group/clair-scan-action@main
+      with:
+        updater: alpine
+        report_path: ${{env.CLAIR_REPORT}}.json
+        report_format: 'json'
+        image: ${{env.DOCKER_TAG}}
+
+    - name: Store the report
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{env.CLAIR_REPORT}}
+        path: ${{env.CLAIR_REPORT}}.json
+        
+    - name: Publish Scan Report
+      uses: benauca/publish-clair-report@10b0daa67fca82001af3c637adde6d2557356d7f
+      with:
+        report_paths: '${{env.CLAIR_REPORT}}.json'
+        severity_level: 'Unknown'
+        check_name: '${{env.CLAIR_REPORT}}'
+
+  clair-scan-ubuntu:
+    name: Clair Scan for Ubuntu
+  
+    env:
+      DOCKER_TAG: theironbank:ubuntu-latest
+      CLAIR_REPORT: ubuntu-clair-report
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    
+    - name: Build the Docker image
+      run: docker build . --file ubuntu/Dockerfile --tag ${DOCKER_TAG}
+
+    - name: Execute Clair scan
+      uses: santander-group/clair-scan-action@main
+      with:
+        updater: ubuntu
+        report_path: ${{env.CLAIR_REPORT}}.json
+        report_format: 'json'
+        image: ${{env.DOCKER_TAG}}
+
+    - name: Store the report
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{env.CLAIR_REPORT}}
+        path: ${{env.CLAIR_REPORT}}.json
+        
+    - name: Publish Scan Report
+      uses: benauca/publish-clair-report@10b0daa67fca82001af3c637adde6d2557356d7f
+      with:
+        report_paths: '${{env.CLAIR_REPORT}}.json'
+        severity_level: 'Unknown'
+        check_name: '${{env.CLAIR_REPORT}}'
         
