@@ -47,7 +47,7 @@ jobs:
     name: Clair Scan for Alpine
     needs: clair-scan-debian
     env:
-      DOCKER_TAG: vulnerables/web-dvwa
+      DOCKER_TAG: alpine:3.14
       CLAIR_REPORT: alpine-remote-clair-report
 
     runs-on: ubuntu-latest
@@ -82,7 +82,7 @@ jobs:
     name: Clair Scan for Ubuntu
     needs: clair-scan-alpine
     env:
-      DOCKER_TAG: vulnerables/web-dvwa
+      DOCKER_TAG: ubuntu:14.04
       CLAIR_REPORT: ubuntu-remote-clair-report
 
     runs-on: ubuntu-latest
@@ -117,10 +117,10 @@ jobs:
     name: Clair Scan for centos
     needs: clair-scan-ubuntu
     env:
-      DOCKER_TAG: vulnerables/web-dvwa
+      DOCKER_TAG: centos:7
       CLAIR_REPORT: centos-remote-clair-report
 
-    runs-on: centos-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Docker login
