@@ -41,7 +41,7 @@ jobs:
       with:
         report_paths: ${{env.CLAIR_REPORT}}.json
         severity_level: 'Unknown'
-        check_name: '${{CLAIR_REPORT}}'
+        check_name: '${{env.CLAIR_REPORT}}'
         
   clair-scan-alpine:
     name: Clair Scan for Alpine
@@ -76,7 +76,7 @@ jobs:
       with:
         report_paths: ${{env.CLAIR_REPORT}}.json
         severity_level: 'Unknown'
-        check_name: '${{CLAIR_REPORT}}'
+        check_name: '${{env.CLAIR_REPORT}}'
 
   clair-scan-ubuntu:
     name: Clair Scan for Ubuntu
@@ -111,4 +111,4 @@ jobs:
       with:
         report_paths: ${{env.CLAIR_REPORT}}.json
         severity_level: 'Unknown'
-        check_name: '${{CLAIR_REPORT}}'
+        check_name: '${{env.CLAIR_REPORT}}'
