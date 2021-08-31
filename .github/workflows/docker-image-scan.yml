@@ -39,7 +39,7 @@ jobs:
         path: ${{env.CLAIR_REPORT}}.json
         
     - name: Publish Scan Report
-      uses: benauca/publish-clair-report@10b0daa67fca82001af3c637adde6d2557356d7f
+      uses: benauca/publish-clair-report@main
       with:
         report_paths: '${{env.CLAIR_REPORT}}.json'
         severity_level: 'Unknown'
@@ -76,7 +76,7 @@ jobs:
         path: ${{env.CLAIR_REPORT}}.json
         
     - name: Publish Scan Report
-      uses: benauca/publish-clair-report@10b0daa67fca82001af3c637adde6d2557356d7f
+      uses: benauca/publish-clair-report@main
       with:
         report_paths: '${{env.CLAIR_REPORT}}.json'
         severity_level: 'Unknown'
@@ -113,7 +113,7 @@ jobs:
         path: ${{env.CLAIR_REPORT}}.json
         
     - name: Publish Scan Report
-      uses: benauca/publish-clair-report@10b0daa67fca82001af3c637adde6d2557356d7f
+      uses: benauca/publish-clair-report@main
       with:
         report_paths: '${{env.CLAIR_REPORT}}.json'
         severity_level: 'Critical'
@@ -150,7 +150,7 @@ jobs:
         path: ${{env.CLAIR_REPORT}}.json
         
     - name: Publish Scan Report
-      uses: benauca/publish-clair-report@10b0daa67fca82001af3c637adde6d2557356d7f
+      uses: benauca/publish-clair-report@main
       with:
         report_paths: '${{env.CLAIR_REPORT}}.json'
         severity_level: 'Critical'
@@ -185,7 +185,7 @@ jobs:
         path: ${{env.CLAIR_REPORT}}.json
         
     - name: Publish Scan Report
-      uses: benauca/publish-clair-report@10b0daa67fca82001af3c637adde6d2557356d7f
+      uses: benauca/publish-clair-report@main
       with:
         report_paths: ${{env.CLAIR_REPORT}}.json
         severity_level: 'Unknown'
@@ -220,7 +220,7 @@ jobs:
         path: ${{env.CLAIR_REPORT}}.json
         
     - name: Publish Scan Report
-      uses: benauca/publish-clair-report@10b0daa67fca82001af3c637adde6d2557356d7f
+      uses: benauca/publish-clair-report@main
       with:
         report_paths: ${{env.CLAIR_REPORT}}.json
         severity_level: 'Unknown'
@@ -255,7 +255,7 @@ jobs:
         path: ${{env.CLAIR_REPORT}}.json
         
     - name: Publish Scan Report
-      uses: benauca/publish-clair-report@10b0daa67fca82001af3c637adde6d2557356d7f
+      uses: benauca/publish-clair-report@main
       with:
         report_paths: ${{env.CLAIR_REPORT}}.json
         severity_level: 'Critical'
@@ -288,7 +288,7 @@ jobs:
         path: ${{env.CLAIR_REPORT}}.json
         
     - name: Publish Scan Report
-      uses: benauca/publish-clair-report@10b0daa67fca82001af3c637adde6d2557356d7f
+      uses: benauca/publish-clair-report@main
       with:
         report_paths: ${{env.CLAIR_REPORT}}.json
         severity_level: 'Critical'
