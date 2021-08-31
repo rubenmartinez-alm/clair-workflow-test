@@ -244,6 +244,7 @@ jobs:
     - name: Execute Clair scan
       uses: santander-group/clair-scan-action@feature/timeout-action-param
       with:
+        clair_timeout: 150
         local: "no"
         updater: ubuntu
         report_path: ${{env.CLAIR_REPORT}}.json
