@@ -279,7 +279,7 @@ jobs:
       uses: santander-group/clair-scan-action@feature/timeout-action-param
       with:
         local: "no"
-        updater: rhel
+        updater: rhel6
         clair_timeout: 600
         report_path: ${{env.CLAIR_REPORT}}.json
         report_format: 'json'
