@@ -138,7 +138,7 @@ jobs:
     - name: Execute Clair scan
       uses: santander-group/clair-scan-action@main
       with:
-        updater: RHEL
+        updater: rhel
         report_path: ${{env.CLAIR_REPORT}}.json
         report_format: 'json'
         image: ${{env.DOCKER_TAG}}
@@ -276,7 +276,7 @@ jobs:
       uses: santander-group/clair-scan-action@main
       with:
         local: "no"
-        updater: RHEL
+        updater: rhel
         report_path: ${{env.CLAIR_REPORT}}.json
         report_format: 'json'
         image: ${{env.DOCKER_TAG}}
