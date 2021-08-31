@@ -117,7 +117,7 @@ jobs:
       uses: benauca/publish-clair-report@main
       with:
         report_paths: '${{env.CLAIR_REPORT}}.json'
-        severity_level: 'Critical'
+        severity_level: 'Unknown'
         check_name: Report -> '${{env.CLAIR_REPORT}}'
         
   local-clair-scan-rhel:
@@ -155,7 +155,7 @@ jobs:
       uses: benauca/publish-clair-report@main
       with:
         report_paths: '${{env.CLAIR_REPORT}}.json'
-        severity_level: 'Critical'
+        severity_level: 'Unknown'
         check_name: Report -> '${{env.CLAIR_REPORT}}'
 
   remote-clair-scan-debian:
@@ -261,7 +261,7 @@ jobs:
       uses: benauca/publish-clair-report@main
       with:
         report_paths: ${{env.CLAIR_REPORT}}.json
-        severity_level: 'Critical'
+        severity_level: 'Unknown'
         check_name: Report -> '${{env.CLAIR_REPORT}}'
 
   remote-clair-scan-rhel:
@@ -295,5 +295,5 @@ jobs:
       uses: benauca/publish-clair-report@main
       with:
         report_paths: ${{env.CLAIR_REPORT}}.json
-        severity_level: 'Critical'
+        severity_level: 'Unknown'
         check_name: Report -> '${{env.CLAIR_REPORT}}'
