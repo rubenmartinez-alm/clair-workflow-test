@@ -25,7 +25,7 @@ jobs:
       run: docker build . --file debian/Dockerfile --tag ${DOCKER_TAG}
 
     - name: Execute Clair scan
-      uses: santander-group/clair-scan-action@main
+      uses: santander-group/clair-scan-action@feature/timeout-action-param
       with:
         updater: debian
         report_path: ${{env.CLAIR_REPORT}}.json
@@ -62,7 +62,7 @@ jobs:
       run: docker build . --file alpine/Dockerfile --tag ${DOCKER_TAG}
 
     - name: Execute Clair scan
-      uses: santander-group/clair-scan-action@main
+      uses: santander-group/clair-scan-action@feature/timeout-action-param
       with:
         updater: alpine
         report_path: ${{env.CLAIR_REPORT}}.json
@@ -99,7 +99,7 @@ jobs:
       run: docker build . --file ubuntu/Dockerfile --tag ${DOCKER_TAG}
 
     - name: Execute Clair scan
-      uses: santander-group/clair-scan-action@main
+      uses: santander-group/clair-scan-action@feature/timeout-action-param
       with:
         updater: ubuntu
         report_path: ${{env.CLAIR_REPORT}}.json
@@ -136,7 +136,7 @@ jobs:
       run: docker build . --file rhel/Dockerfile --tag ${DOCKER_TAG}
 
     - name: Execute Clair scan
-      uses: santander-group/clair-scan-action@main
+      uses: santander-group/clair-scan-action@feature/timeout-action-param
       with:
         updater: rhel
         report_path: ${{env.CLAIR_REPORT}}.json
@@ -170,7 +170,7 @@ jobs:
       run: docker login -u ${{secrets.DOCKER_USR}} -p ${{secrets.DOCKER_TKN}}
       
     - name: Execute Clair scan
-      uses: santander-group/clair-scan-action@main
+      uses: santander-group/clair-scan-action@feature/timeout-action-param
       with:
         local: "no"
         updater: debian
@@ -205,7 +205,7 @@ jobs:
       run: docker login -u ${{secrets.DOCKER_USR}} -p ${{secrets.DOCKER_TKN}}
       
     - name: Execute Clair scan
-      uses: santander-group/clair-scan-action@main
+      uses: santander-group/clair-scan-action@feature/timeout-action-param
       with:
         local: "no"
         updater: alpine
@@ -240,7 +240,7 @@ jobs:
       run: docker login -u ${{secrets.DOCKER_USR}} -p ${{secrets.DOCKER_TKN}}
       
     - name: Execute Clair scan
-      uses: santander-group/clair-scan-action@main
+      uses: santander-group/clair-scan-action@feature/timeout-action-param
       with:
         local: "no"
         updater: ubuntu
@@ -273,7 +273,7 @@ jobs:
     steps:
 
     - name: Execute Clair scan
-      uses: santander-group/clair-scan-action@main
+      uses: santander-group/clair-scan-action@feature/timeout-action-param
       with:
         local: "no"
         updater: rhel
