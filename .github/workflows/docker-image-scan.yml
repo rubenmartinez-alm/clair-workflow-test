@@ -101,6 +101,7 @@ jobs:
     - name: Execute Clair scan
       uses: santander-group/clair-scan-action@feature/timeout-action-param
       with:
+        clair_timeout: 150
         updater: ubuntu
         report_path: ${{env.CLAIR_REPORT}}.json
         report_format: 'json'
@@ -139,6 +140,7 @@ jobs:
       uses: santander-group/clair-scan-action@feature/timeout-action-param
       with:
         updater: rhel
+        clair_timeout: 300
         report_path: ${{env.CLAIR_REPORT}}.json
         report_format: 'json'
         image: ${{env.DOCKER_TAG}}
@@ -277,6 +279,7 @@ jobs:
       with:
         local: "no"
         updater: rhel
+        clair_timeout: 300
         report_path: ${{env.CLAIR_REPORT}}.json
         report_format: 'json'
         image: ${{env.DOCKER_TAG}}
