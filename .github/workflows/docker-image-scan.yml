@@ -268,8 +268,8 @@ jobs:
     name: Remote Clair Scan for rhel
     needs: remote-clair-scan-ubuntu
     env:
-      DOCKER_TAG: registry.access.redhat.com/rhel7:latest
-      CLAIR_REPORT: remote-ubuntu-clair-report
+      DOCKER_TAG: registry.access.redhat.com/rhel6:latest
+      CLAIR_REPORT: remote-rhel-clair-report
 
     runs-on: ubuntu-latest
 
