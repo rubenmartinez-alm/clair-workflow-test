@@ -268,7 +268,7 @@ jobs:
     name: Remote Clair Scan for rhel
     needs: remote-clair-scan-ubuntu
     env:
-      DOCKER_TAG: registry.access.redhat.com/rhel6:latest
+      DOCKER_TAG: registry.access.redhat.com/rhel6:6.5-11
       CLAIR_REPORT: remote-rhel-clair-report
 
     runs-on: ubuntu-latest
@@ -279,7 +279,7 @@ jobs:
       uses: santander-group/clair-scan-action@feature/timeout-action-param
       with:
         local: "no"
-        updater: rhel6
+        updater: rhel
         clair_timeout: 600
         report_path: ${{env.CLAIR_REPORT}}.json
         report_format: 'json'

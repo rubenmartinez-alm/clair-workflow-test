@@ -1,1 +1,1 @@
-FROM registry.access.redhat.com/rhel6:latest
+FROM registry.access.redhat.com/rhel6:6.5-11
