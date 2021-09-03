@@ -25,7 +25,7 @@ jobs:
       run: docker build . --file debian/Dockerfile --tag ${DOCKER_TAG}
 
     - name: Execute Clair scan
-      uses: santander-group/clair-scan-action@1.1.0
+      uses: santander-group/clair-scan-action@fix/input-sanitization
       with:
         updater: debian
         report_path: ${{env.CLAIR_REPORT}}.json
@@ -62,7 +62,7 @@ jobs:
       run: docker build . --file alpine/Dockerfile --tag ${DOCKER_TAG}
 
     - name: Execute Clair scan
-      uses: santander-group/clair-scan-action@1.1.0
+      uses: santander-group/clair-scan-action@fix/input-sanitization
       with:
         updater: alpine
         report_path: ${{env.CLAIR_REPORT}}.json
@@ -99,7 +99,7 @@ jobs:
       run: docker build . --file ubuntu/Dockerfile --tag ${DOCKER_TAG}
 
     - name: Execute Clair scan
-      uses: santander-group/clair-scan-action@1.1.0
+      uses: santander-group/clair-scan-action@fix/input-sanitization
       with:
         clair_timeout: 150
         updater: ubuntu
@@ -137,7 +137,7 @@ jobs:
       run: docker build . --file rhel/Dockerfile --tag ${DOCKER_TAG}
 
     - name: Execute Clair scan
-      uses: santander-group/clair-scan-action@1.1.0
+      uses: santander-group/clair-scan-action@fix/input-sanitization
       with:
         updater: rhel
         clair_timeout: 600
@@ -172,7 +172,7 @@ jobs:
       run: docker login -u ${{secrets.DOCKER_USR}} -p ${{secrets.DOCKER_TKN}}
       
     - name: Execute Clair scan
-      uses: santander-group/clair-scan-action@1.1.0
+      uses: santander-group/clair-scan-action@fix/input-sanitization
       with:
         local: "no"
         updater: debian
@@ -207,7 +207,7 @@ jobs:
       run: docker login -u ${{secrets.DOCKER_USR}} -p ${{secrets.DOCKER_TKN}}
       
     - name: Execute Clair scan
-      uses: santander-group/clair-scan-action@1.1.0
+      uses: santander-group/clair-scan-action@fix/input-sanitization
       with:
         local: "no"
         updater: alpine
@@ -242,7 +242,7 @@ jobs:
       run: docker login -u ${{secrets.DOCKER_USR}} -p ${{secrets.DOCKER_TKN}}
       
     - name: Execute Clair scan
-      uses: santander-group/clair-scan-action@1.1.0
+      uses: santander-group/clair-scan-action@fix/input-sanitization
       with:
         clair_timeout: 150
         local: "no"
@@ -276,7 +276,7 @@ jobs:
     steps:
 
     - name: Execute Clair scan
-      uses: santander-group/clair-scan-action@1.1.0
+      uses: santander-group/clair-scan-action@fix/input-sanitization
       with:
         local: "no"
         updater: rhel
